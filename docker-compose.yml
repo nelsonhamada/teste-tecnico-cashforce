@@ -1,15 +1,12 @@
 version: '3'
 
 services:
-  # Serviço que irá rodar o node
   node:
     image: node:16.14
     container_name: cashforce-backend
-    # Mesmo que `docker run -t`
     tty: true
-    # Mesmo que `docker run -i`
     stdin_open: true
-    command: bash
+    command: sh -c "npm install && bash"
     restart: always
     working_dir: /home/node/app
     volumes:
@@ -17,13 +14,12 @@ services:
     depends_on:
       - database
     ports:
-      # Expõe a porta padrão da aplicação: altere aqui caso use outra porta
       - 3001:3001
     environment:
       MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_PORT: 3306
-      MYSQL_HOST: database # Nome do service que será utilizado para o banco de dados
+      MYSQL_HOST: database
       PORT: 3001
 
   database:
