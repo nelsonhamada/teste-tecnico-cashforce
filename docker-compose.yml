@@ -27,8 +27,8 @@ services:
     container_name: cashforce_db
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: cashforcedb
+      MYSQL_DATABASE: cashforce_v3
     ports:
       - 33061:3306
     volumes:
-      - ./:/docker-entrypoint-initdb.d
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
