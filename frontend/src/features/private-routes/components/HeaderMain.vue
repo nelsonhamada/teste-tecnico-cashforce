@@ -1,11 +1,5 @@
 
 <template> 
-<v-app>
-
-    <v-app-bar>
-        <v-toolbar-title>My App</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-btn @click="() => console.log('foi')">Logout</v-btn>
+    <v-app-bar app elevation="1" class="w-100 ">
     </v-app-bar>
-</v-app>
 </template>
