@@ -5,7 +5,13 @@ const PrivateRoutes = {
     },
     props: true,
     component: () => import("@/features/private-routes/main/view/PrivateIndex.vue"),
-    children: []
+    children: [
+        {
+            name: "invoices",
+            path: "/invoices",
+            component: () => import("@/features/private-routes/invoices/views/InvoicesIndex.vue"),
+        }
+    ]
 };
 
 export default PrivateRoutes;

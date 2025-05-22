@@ -9,7 +9,7 @@ const sidebarItems: sidebarItemsType[] = [
     {
         title: 'Notas Fiscais',
         icon: 'mdi-handshake-outline',
-        // to: { name: 'invoices' },
+        to: { name: 'invoices' },
     },
 ];  
 
