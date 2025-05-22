@@ -1,8 +1,11 @@
 <script lang="ts" setup>
 import { ref } from "vue";
+import NavItem from "@/features/private-routes/components/sidebar/NavItem.vue";
 import cashforceLogo from "@/features/private-routes/assets/cashforce-logo.png";
+import sidebarItems from "@/features/private-routes/components/sidebar/sidebarItems";
 
 const sidebarDrawer = ref(true);
+const sidebarMenu = ref(sidebarItems);
 </script>
 
 <template>
@@ -31,6 +34,17 @@ const sidebarDrawer = ref(true);
         <v-icon>{{ sidebarDrawer ? 'mdi-chevron-left' : 'mdi-chevron-right' }}</v-icon>
       </v-btn>
     </div>
-    <!-- Adicione aqui outros itens do menu -->
+
+    <div>
+      <v-list aria-busy="true" aria-label="menu list">
+        <template
+          v-for="(item, index) in sidebarMenu"
+          :key="index"
+        >
+          <NavItem :item="item" :level="1" />
+        </template>
+        </v-list>
+    </div>
+
   </v-navigation-drawer>
 </template>

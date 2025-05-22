@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Header from "@/features/private-routes/components/HeaderMain.vue";
-import SideBar from "@/features/private-routes/components/SideBar.vue";
+import SideBar from "@/features/private-routes/components/sidebar/SideBar.vue";
 </script>
 
 <template>
