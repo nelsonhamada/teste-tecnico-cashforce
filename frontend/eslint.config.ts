@@ -1,28 +1,59 @@
-import { globalIgnores } from 'eslint/config'
-import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
-import pluginVue from 'eslint-plugin-vue'
-import pluginVitest from '@vitest/eslint-plugin'
-import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
+import pluginJs from "@eslint/js";
+import stylistic from '@stylistic/eslint-plugin';
+import pluginVue from "eslint-plugin-vue";
+import globals from "globals";
+import tseslint from "typescript-eslint";
 
-// To allow more languages other than `ts` in `.vue` files, uncomment the following lines:
-// import { configureVueProject } from '@vue/eslint-config-typescript'
-// configureVueProject({ scriptLangs: ['ts', 'tsx'] })
-// More info at https://github.com/vuejs/eslint-config-typescript/#advanced-setup
 
-export default defineConfigWithVueTs(
+export default [
   {
-    name: 'app/files-to-lint',
-    files: ['**/*.{ts,mts,tsx,vue}'],
+   // ignores: ["**/*.spec.js"],
+    files: ["**/*.{js,mjs,cjs,ts,vue}"]
   },
-
-  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
-
-  pluginVue.configs['flat/essential'],
-  vueTsConfigs.recommended,
+  {languageOptions: { globals: globals.browser }},
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  ...tseslint.configs.strict,
+  ...tseslint.configs.stylistic,
+  ...pluginVue.configs["flat/essential"],
   
+  {files: ["**/*.vue"], languageOptions: {parserOptions: {parser: tseslint.parser}}},
   {
-    ...pluginVitest.configs.recommended,
-    files: ['src/**/__tests__/*'],
+    plugins: {
+      '@stylistic': stylistic
+    },
+    //ignores: ["*.spec.js"],
+    rules: {
+      '@stylistic/semi': ["error", "always"],
+      "prefer-const": "error",
+      "no-var": "error",
+      "@typescript-eslint/no-explicit-any": "warn",
+       //"one-var": "error",
+     // "no-nested-ternary" : "error",
+       /*"@typescript-eslint/naming-conventions": ["error",
+          { selector: "function", format: ["camelCase"] },
+       ],*/
+      "new-cap": "error",
+      "@typescript-eslint/no-dynamic-delete": "warn",
+      "@typescript-eslint/no-require-imports": "warn",
+    }
+}
+];
+
+
+/* old 
+require('@rushstack/eslint-patch/modern-module-resolution');
+
+module.exports = {
+  root: true,
+  extends: ['plugin:vue/vue3-essential', 'eslint:recommended', '@vue/eslint-config-typescript/recommended', '@vue/eslint-config-prettier'],
+  env: {
+    'vue/setup-compiler-macros': true
   },
-  skipFormatting,
-)
+  rules: {
+    'comma-dangle': 'off',
+    '@typescript-eslint/comma-dangle': 'off',
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
+    'javascript.validate.enable': 0
+  }
+};*/
