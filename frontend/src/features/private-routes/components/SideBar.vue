@@ -20,7 +20,7 @@ const sidebarDrawer = ref(true);
         :src="cashforceLogo"
         alt="Cashforce Logo"
         class="ma-2"
-        style="max-width: 140px; margin-bottom: 16px; height: 35px"
+        style="max-width: 160px; margin-bottom: 16px; height: 35px"
       />
       <v-btn
         icon
