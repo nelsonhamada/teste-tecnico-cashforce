@@ -120,35 +120,42 @@ watch(() => props.data, updateData);
   padding: 12px;
 }
 .default-grid .wj-header {
-  border-top: 1px solid rgb(var(--v-theme-borderLight)) !important;
+  border: none !important;
+  background-color: transparent !important;
+  color: #A1A8B8;
+  
 }
+
 
 .default-grid .wj-flexgrid .wj-cell {
   padding: 12px;
-  color: rgb(var(--v-theme-darkText));
-  background-color: rgb(var(--v-theme-background));
   border: none;
-  border-bottom: 1px solid rgb(var(--v-theme-borderLight));
+  border-top: 1px solid ;
+  border-bottom: 1px solid ;
+  border-color: #A1A8B8;
   text-align: start;
+  border-spacing: 10px !important;
+
 }
 
-.default-grid .wj-cells .wj-row:hover .wj-cell:not(.wj-state-selected):not(.wj-state-multi-selected) {
-  transition: all 0.5s;
-  background: rgb(var(--v-theme-lightprimary));
+
+
+.default-grid .wj-flexgrid .wj-row > .wj-cell:first-child {
+  border-left: 2px solid ;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-color: #A1A8B8;
 }
 
-.default-grid .wj-state-selected {
-  background: rgba(var(--v-theme-primary), calc(var(--v-activated-opacity) * var(--v-theme-overlay-multiplier))) !important;
-  color: rgb(var(--v-theme-primary)) !important;
-}
-
-.default-grid .wj-cells .wj-cell.wj-state-multi-selected {
-  background: rgba(var(--v-theme-primary), calc(var(--v-activated-opacity) * var(--v-theme-overlay-multiplier))) !important;
-  color: rgb(var(--v-theme-primary)) !important;
+.default-grid .wj-flexgrid .wj-row > .wj-cell:last-child {
+  border-right: 2px solid ;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-color: #A1A8B8;
 }
 
 .default-grid .wj-flexgrid {
-  background-color: rgb(var(--v-theme-background));
   border: none;
 }
+
 </style>

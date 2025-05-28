@@ -2,18 +2,36 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import DefaultGrid from '../../components/DefaultGrid.vue';
+import genericFetchData from '@/core/HttpClient/genericFetchData';
+import URL from '@/core/HttpRequests/EnumRequests';
 
+const items = ref([]);
+const showError = ref(false);
+const errorMessage = ref('');
 
-const headers = [
-  { title: 'NOTA FISCAL', key: 'nf', align: 'start' as const },
-  { title: 'SACADO', key: 'sacado' },
-  { title: 'CEDENTE', key: 'cedente' },
-  { title: 'EMISSÃO', key: 'emissao' },
-  { title: 'VALOR', key: 'valor' },
-  { title: 'STATUS', key: 'status' },
-  { title: '', key: 'actions', sortable: false },
-];
+onMounted(async () => {
+  try {
+    const data = await genericFetchData(URL.invoicesGetAll);
 
+    items.value = data.map((item: any) => ({
+      ...item,
+      emissao: formatDate(item.emissao),
+    }));
+  } catch (error) {
+    showError.value = true;
+    errorMessage.value = 'Erro ao buscar notas fiscais. Por favor, tente novamente mais tarde.';
+    console.error('Erro ao buscar notas fiscais:', error);
+  }
+});
+
+function formatDate(dateStr: string): string {
+  if (!dateStr) return '';
+  const date = new Date(dateStr);
+  if (isNaN(date.getTime())) return dateStr;
+  return date.toLocaleDateString('pt-BR');
+}
+
+// Headers inseridos de forma manual para aproximar do Figma, poderia ser feito diretamente do backend também e tratado as _
 const columns = {
   nf: 'NOTA FISCAL',
   sacado: 'SACADO',
@@ -23,22 +41,13 @@ const columns = {
   status: 'STATUS',
 };
 
-const items = ref([]);
-
-onMounted(async () => {
-  try {
-    const response = await fetch('http://localhost:3001/main');
-    const data = await response.json();
-    console.log('Dados recebidos:', data);  
-    items.value = data;
-  } catch (error) {
-    console.error('Erro ao buscar notas fiscais:', error);
-  }
-});
 </script>
 
 <template>
   <v-container class="pa-4">
+    <v-snackbar v-model="showError" location="top right" color="error" close-on-content-click>
+        {{ errorMessage }}
+        </v-snackbar>
     <div class="mb-2">
       <div class="d-flex align-center mb-1">
         <v-icon color="primary" class="mr-2">mdi-handshake-outline</v-icon>
@@ -48,14 +57,13 @@ onMounted(async () => {
         Visualize as notas fiscais que você tem.
       </div>
     </div>
-    <v-card-item>
-
+    <div>
         <DefaultGrid
         title="Notas Fiscais"
         :data="items"
         :columns="columns"
         />
-    </v-card-item>
+    </div>
   </v-container>
 </template>
 
