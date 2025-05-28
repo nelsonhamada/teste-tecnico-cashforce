@@ -7,7 +7,7 @@ import SideBar from "@/features/private-routes/components/sidebar/SideBar.vue";
   <v-app>
     <SideBar />
     <Header />
-    <v-main >
+    <v-main>
       <router-view v-slot="{ Component }">
         <Transition name="fade" mode="out-in">
           <component :is="Component" />
@@ -16,4 +16,6 @@ import SideBar from "@/features/private-routes/components/sidebar/SideBar.vue";
     </v-main>
     </v-app>
 </template>
+
+
 
