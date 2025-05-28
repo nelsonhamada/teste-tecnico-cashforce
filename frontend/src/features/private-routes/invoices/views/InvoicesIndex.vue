@@ -1,5 +1,8 @@
 <!-- eslint-disable -->
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
+import DefaultGrid from '../../components/DefaultGrid.vue';
+
 
 const headers = [
   { title: 'NOTA FISCAL', key: 'nf', align: 'start' as const },
@@ -11,32 +14,27 @@ const headers = [
   { title: '', key: 'actions', sortable: false },
 ];
 
-const items = [
-  {
-    nf: '1234',
-    sacado: 'SACADO 001',
-    cedente: 'CEDENTE 002',
-    emissao: '12/02/2020',
-    valor: 'R$ 49.725,00',
-    status: 'RECEBIDO',
-  },
-  {
-    nf: '1234',
-    sacado: 'SACADO 001',
-    cedente: 'CEDENTE 002',
-    emissao: '12/02/2020',
-    valor: 'R$ 49.025,00',
-    status: 'RECEBIDO',
-  },
-  {
-    nf: '1234',
-    sacado: 'SACADO 001',
-    cedente: 'CEDENTE 002',
-    emissao: '12/02/2020',
-    valor: 'R$ 49.925,00',
-    status: 'RECEBIDO',
-  },
-];
+const columns = {
+  nf: 'NOTA FISCAL',
+  sacado: 'SACADO',
+  cedente: 'CEDENTE',
+  emissao: 'EMISSÃO',
+  valor: 'VALOR',
+  status: 'STATUS',
+};
+
+const items = ref([]);
+
+onMounted(async () => {
+  try {
+    const response = await fetch('http://localhost:3001/main');
+    const data = await response.json();
+    console.log('Dados recebidos:', data);  
+    items.value = data;
+  } catch (error) {
+    console.error('Erro ao buscar notas fiscais:', error);
+  }
+});
 </script>
 
 <template>
@@ -50,22 +48,14 @@ const items = [
         Visualize as notas fiscais que você tem.
       </div>
     </div>
-<v-table>
-    <thead class="pa-4">
-      <tr>
-        <th v-for="(item) in headers" :key="item.key"> {{ item.title  }}</th>
-      </tr>
-    </thead>
-    <tbody class="mt-14">
-      <tr v-for="(item, index) in items" :key="index" class="row-table" >
-        <td>{{ item.nf }}</td>
-        <td>{{ item.cedente }}</td>
-        <td>{{ item.emissao }}</td>
-        <td color="green">{{ item.valor }}</td>
-        <td>{{ item.status }}</td>
-      </tr>
-    </tbody>
-  </v-table>
+    <v-card-item>
+
+        <DefaultGrid
+        title="Notas Fiscais"
+        :data="items"
+        :columns="columns"
+        />
+    </v-card-item>
   </v-container>
 </template>
 
