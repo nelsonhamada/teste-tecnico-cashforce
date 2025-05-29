@@ -26,6 +26,8 @@ Abaixo, um exemplo da tela principal exibindo as notas fiscais em uma tabela cri
 ---
 
 ## Como rodar a aplicação
+Obs.: Para rodar a aplicação em sua máquina é necessário ter o Docker instalado, para maiores informações consulte a documentação oficial.
+[https://docs.docker.com/get-started/]
 
 ### 1. Clone o repositório e acesse a pasta do projeto
 
