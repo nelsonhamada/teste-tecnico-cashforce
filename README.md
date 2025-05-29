@@ -30,7 +30,7 @@ Abaixo, um exemplo da tela principal exibindo as notas fiscais em uma tabela cri
 ### 1. Clone o repositório e acesse a pasta do projeto
 
 ```sh
-git clone <url-do-repositorio>
+git clone git@github.com:nelsonhamada/teste-tecnico-cashforce.git
 cd teste-tecnico-cashforce
 ```
 
