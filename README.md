@@ -1,35 +1,41 @@
 # Cashforce Technical Test
 
-Projeto dockerizado e desenvolvido em Node.js, Sequelize e Vue.js.
+Projeto dockerizado utilizando **Node.js**, **Sequelize**, **MySQL** e **Vue.js**.
 
 ---
 
-## O que está implementado
+## Stacks Utilizadas e Benefícios
 
-- API REST em Express utilizando Sequelize para integração com o banco de dados.
-- Banco de dados inicializado via script SQL (`init.sql`) ao subir o container MySQL.
-- Estrutura pronta para integração com frontend Vue.js (diretório será adicionado em breve).
-- Foram implementadas migrations, seeders e models do Sequelize para demonstração, mas não são obrigatórios para rodar a aplicação.
+- **Node.js**: Plataforma eficiente para aplicações web escaláveis, com grande ecossistema de bibliotecas.
+- **Express**: Framework minimalista para Node.js, facilita a criação de APIs REST robustas e rápidas.
+- **Sequelize**: ORM para Node.js que simplifica o gerenciamento do banco de dados relacional, tornando queries e migrations mais seguras e produtivas.
+- **MySQL**: Banco de dados relacional amplamente utilizado, confiável e de fácil integração com Node.js.
+- **Vue.js**: Framework progressivo para construção de interfaces de usuário reativas e performáticas.
+- **Vuetify**: Biblioteca de componentes UI para Vue, garantindo design moderno e responsivo.
+- **Wijmo**: Utilizado para a criação da tabela principal do sistema, por ser uma ferramenta performática, flexível e muito utilizada no mercado para exibição de grandes volumes de dados em grids.
+- **Docker**: Permite isolar e padronizar ambientes, facilitando o setup e a execução do projeto em qualquer máquina.
 
 ---
 
-## Como rodar o projeto
+## Como rodar a aplicação
 
-### 1. Suba os containers (Node e MySQL) usando Docker Compose
+### 1. Clone o repositório e acesse a pasta do projeto
+
+```sh
+git clone <url-do-repositorio>
+cd teste-tecnico-cashforce
+```
+
+### 2. Suba os containers (Node, MySQL e Frontend) usando Docker Compose
 
 ```sh
 docker-compose up -d
 ```
 
-### 2. Instale as dependências no container Node
+### 3. Acesse a aplicação
 
-```sh
-docker exec -it cashforce-backend npm install
-```
-
-### 3. Acesse a API
-
-Acesse [http://localhost:3001/main](http://localhost:3001/main) para testar a rota principal.
+- **Frontend:** [http://localhost:3000](http://localhost:3000)
+- **Backend (API):** [http://localhost:3001/main](http://localhost:3001/main)
 
 ---
 
@@ -63,16 +69,13 @@ backend/
     ...
   package.json
   Dockerfile
-frontend/  # (em breve)
+frontend/
+  src/
+  package.json
+  Dockerfile
 init.sql
 docker-compose.yml
 ```
-
----
-
-## Sobre o Frontend
-
-O diretório `frontend` será adicionado em breve, utilizando Vue.js para consumir a API e exibir os dados.
 
 ---
 
@@ -81,5 +84,6 @@ O diretório `frontend` será adicionado em breve, utilizando Vue.js para consum
 - O banco de dados é criado automaticamente ao subir o container MySQL, usando o script `init.sql`.
 - As variáveis de ambiente do banco já estão configuradas no `docker-compose.yml`.
 - Para desenvolvimento, o volume `./backend/src:/app-backend/src` permite hot reload do código backend.
+- O frontend está configurado para rodar na porta 3000 e o backend na porta 3001.
 
 ---
