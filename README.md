@@ -12,6 +12,7 @@ Projeto dockerizado utilizando **Node.js**, **Sequelize**, **MySQL** e **Vue.js*
 - **MySQL**: Banco de dados relacional amplamente utilizado, confiável e de fácil integração com Node.js.
 - **Vue.js**: Framework progressivo para construção de interfaces de usuário reativas e performáticas.
 - **Vuetify**: Biblioteca de componentes UI para Vue, garantindo design moderno e responsivo.
+- **Wijmo**: Utilizado para a criação da tabela principal do sistema, por ser uma ferramenta performática, flexível e muito utilizada no mercado para exibição de grandes volumes de dados em grids.
 - **Docker**: Permite isolar e padronizar ambientes, facilitando o setup e a execução do projeto em qualquer máquina.
 
 ---
