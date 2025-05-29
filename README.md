@@ -17,6 +17,14 @@ Projeto dockerizado utilizando **Node.js**, **Sequelize**, **MySQL** e **Vue.js*
 
 ---
 
+## Exemplo da interface
+
+Abaixo, um exemplo da tela principal exibindo as notas fiscais em uma tabela criada com Wijmo:
+
+![Exemplo da interface](./screenshot.png)
+
+---
+
 ## Como rodar a aplicação
 
 ### 1. Clone o repositório e acesse a pasta do projeto
