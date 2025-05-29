@@ -44,7 +44,7 @@ const columns = {
 </script>
 
 <template>
-  <v-container class="pa-4">
+  <v-container class="ma-0">
     <v-snackbar v-model="showError" location="top right" color="error" close-on-content-click>
         {{ errorMessage }}
         </v-snackbar>

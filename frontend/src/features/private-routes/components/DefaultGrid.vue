@@ -67,7 +67,7 @@ const displayedColumns = computed(() => {
 
 function columnMinWidth(alias: string): number {
   if (!alias) return 120;
-  const minWidth = alias.length * 10 + 60;
+  const minWidth = alias.length * 10 + 160;
   return minWidth;
 }
 
@@ -106,10 +106,10 @@ watch(() => props.data, updateData);
           :key="column"
           :header="columns?.[column] || column"
           :binding="column"
-          width="*"
           :isReadOnly="true"
-          :minWidth="columnMinWidth(column)"
-        />
+          :width="columnMinWidth(column)"
+        >
+        </wj-flex-grid-column>
       </wj-flex-grid>
     </div>
   </v-card>
@@ -119,11 +119,16 @@ watch(() => props.data, updateData);
 .default-grid .search {
   padding: 12px;
 }
+
+.default-grid .wj-flexgrid .wj-row:not(.wj-header) .wj-cell:last-child,
+.default-grid .wj-flexgrid .wj-row:not(.wj-header) .wj-cell:nth-last-child(2) {
+  color: #00AD8C;
+}
+
 .default-grid .wj-header {
   border: none !important;
   background-color: transparent !important;
-  color: #A1A8B8;
-  
+  color: #A1A8B8 !important;  
 }
 
 
@@ -152,10 +157,12 @@ watch(() => props.data, updateData);
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   border-color: #A1A8B8;
+  
 }
 
 .default-grid .wj-flexgrid {
   border: none;
 }
+
 
 </style>
